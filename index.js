@@ -7,20 +7,20 @@ async function main() {
   const usersData =  await users.json();
   userListEl.innerHTML=usersData.map((user) => usersHTML(user)).join('');
 }
-main();
 
 function showUserPosts(id) {
-    localStorage.setItem("id",id)
+  localStorage.setItem("id",id);
   window.location.href = `${window.location.origin}/user.html`;
-  
 }
 function usersHTML(user) {
   return `
+  <div class="user-card" onclick="showUserPosts(${user.id})">
     <div class="user-card" onclick="showUserPosts(${user.id})">
       <h2>${user.name}</h2>
       <p><strong>Email:</strong> ${user.email}</p>
       <p><strong>Phone:</strong> ${user.phone}</p>
-      <p><strong>Website:</strong> ${user.website}</p>
+      <p><strong>Website:</strong> <a href="https://${user.website}" target="_blank">${user.website}</a></p>
     </div>
-  `;
+    </div>  `;
 }
+main();
